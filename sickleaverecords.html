@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sick Leave Records | Clinic Information System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#F4F7FB;
+}
+
+.content{
+    padding:30px;
+}
+
+.panel{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.panel h2{
+    color:#0F766E;
+    margin-bottom:20px;
+}
+
+.stats{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.stat{
+    background:#0F766E;
+    color:white;
+    padding:15px 20px;
+    border-radius:10px;
+    min-width:180px;
+    text-align:center;
+}
+
+.filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.filters input{
+    flex:1;
+    min-width:250px;
+    padding:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#0F766E;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f7f7f7;
+}
+
+.bottom-buttons{
+    margin-top:20px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+@media print{
+
+.sidebar,
+.topbar,
+.filters,
+.bottom-buttons{
+
+    display:none;
+
+}
+
+.main{
+
+    margin:0;
+
+}
+
+body{
+
+    background:white;
+
+}
+
+.panel{
+
+    box-shadow:none;
+
+    border:none;
+
+}
+
+table{
+
+    width:100%;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<<div class="sidebar">
+
+    <div class="logo">
+
+        <img src="images/logo.png">
+
+        <h2>Clinic Information System</h2>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="consultation.html">
+                <i class="fa fa-user-doctor"></i>
+                Consultation
+            </a>
+        </li>
+
+        <li>
+            <a href="medicalrecords.html">
+                <i class="fa fa-folder-open"></i>
+                Medical Records
+            </a>
+        </li>
+
+        <li>
+            <a href="sickleave.html">
+                <i class="fa fa-file-medical"></i>
+                Sick Leave
+            </a>
+        </li>
+
+        <li>
+            <a class="active" href="sickleaverecords.html">
+                <i class="fa fa-notes-medical"></i>
+                Sick Leave Records
+            </a>
+        </li>
+
+        <li>
+    <a href="admintools.html">
+        <i class="fa-solid fa-user-shield"></i>
+        <span>Admin Tools</span>
+    </a>
+</li>
+
+        <li>
+    <a href="recyclebin.html">
+        <i class="fa-solid fa-trash-can"></i>
+        Recycle Bin
+    </a>
+</li>
+
+ <li>
+            <a href="index.html">
+                <i class="fa fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Sick Leave Records</h1>
+
+<div class="user-profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+<span id="loggedUser"></span>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="panel">
+
+<h2>Sick Leave Records</h2>
+
+<div class="stats">
+
+<div class="stat">
+
+<h3 id="totalLeaves">0</h3>
+
+<p>Total Records</p>
+
+</div>
+
+<div class="stat">
+
+<h3 id="totalEmployees">0</h3>
+
+<p>Employees</p>
+
+</div>
+
+<div class="stat">
+
+<h3 id="totalDays">0</h3>
+
+<p>Total Leave Days</p>
+
+</div>
+
+</div>
+
+<div class="filters">
+
+<input
+type="text"
+id="searchLeave"
+placeholder="Search Employee ID or Patient Name">
+
+<button
+class="btn btn-info"
+id="searchBtn">
+
+<i class="fa fa-search"></i>
+
+Search
+
+</button>
+
+<button
+class="btn btn-primary"
+id="allBtn">
+
+All Records
+
+</button>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Employee ID</th>
+
+<th>Patient Name</th>
+
+<th>Date From</th>
+
+<th>Date To</th>
+
+<th>Days</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="leaveTable">
+
+<tr>
+
+<td colspan="6" align="center">
+
+Loading records...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="bottom-buttons">
+
+<button
+class="btn btn-success"
+id="printAll">
+
+<i class="fa fa-print"></i>
+
+Print All
+
+</button>
+
+<button
+class="btn btn-danger"
+id="deleteAll">
+
+<i class="fa fa-trash"></i>
+
+Delete All
+
+</button>
+
+<button
+class="btn btn-secondary"
+onclick="history.back()">
+
+Back
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("loggedUser").textContent =
+sessionStorage.getItem("currentUser") || "Clinic Staff";
+
+</script>
+
+<script type="module" src="js/sickleaverecords.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Tools | Clinic Information System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+}
+
+.container{
+
+    max-width:1100px;
+    margin:40px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+}
+
+h1{
+
+    text-align:center;
+    color:#0F766E;
+    margin-bottom:30px;
+
+}
+
+.section{
+
+    margin-bottom:35px;
+
+}
+
+.section h2{
+
+    color:#333;
+    border-bottom:2px solid #0F766E;
+    padding-bottom:8px;
+    margin-bottom:20px;
+
+}
+
+.filters{
+
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    align-items:center;
+
+}
+
+.filters select{
+
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    min-width:220px;
+
+}
+
+.buttons{
+
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+}
+
+button{
+
+    padding:12px 20px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+
+}
+
+.view{
+    background:#0F766E;
+}
+
+.export{
+    background:#15803D;
+}
+
+.print{
+    background:#2563EB;
+}
+
+.download{
+    background:#059669;
+}
+
+.upload{
+    background:#7C3AED;
+}
+
+.clear{
+    background:#F59E0B;
+}
+
+.back{
+    background:#6B7280;
+}
+
+button:hover{
+
+    opacity:.9;
+
+}
+
+#statsSection{
+
+    margin-top:20px;
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#0F766E;
+    color:white;
+    padding:10px;
+
+}
+
+td{
+
+    border:1px solid #ddd;
+    padding:10px;
+
+}
+
+.no-report{
+
+    text-align:center;
+    color:#777;
+    padding:40px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+<i class="fa-solid fa-user-shield"></i>
+Admin Tools
+</h1>
+
+<!-- ================= REPORT ================= -->
+
+<div class="section">
+
+<h2>View Report</h2>
+
+<div class="filters">
+
+<select id="departmentFilter">
+
+<option value="">All Departments</option>
+
+<option>HR</option>
+<option>Finance and Corporate Services</option>
+<option>Life Sciences & Education</option>
+<option>Park Grounds</option>
+<option>Engineering</option>
+<option>Security</option>
+<option>Parks and Adventure</option>
+<option>Safari Camp</option>
+<option>Base Camp</option>
+<option>Front Office</option>
+<option>Motorpool</option>
+<option>Sales & Marketing</option>
+<option>Office of the VP</option>
+<option>ML-Agri Ventures</option>
+<option>Santican Cattle Station</option>
+<option>Tunnel Garden</option>
+<option>Tenants-Outpost</option>
+<option>Tenants-Auntie Anne's</option>
+<option>Tenants-Pizzeria Michelangelo</option>
+<option>Tenants-Convenient Store</option>
+
+<option value="Other">Other</option>
+</select>
+
+<select id="monthFilter">
+
+<option value="">All Months</option>
+
+<option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12">December</option>
+
+</select>
+
+<select id="yearFilter">
+
+<option value="">All Years</option>
+
+<option>2025</option>
+<option>2026</option>
+<option>2027</option>
+<option>2028</option>
+
+</select>
+
+</div>
+
+<div class="buttons">
+
+<button id="generateReport" class="view">
+
+<i class="fa-solid fa-chart-column"></i>
+
+View Report
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= REPORT TABLE ================= -->
+
+<div class="section">
+
+<h2>Report</h2>
+
+<div id="statsSection">
+
+<div class="no-report">
+
+No report generated.
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button id="downloadExcel" class="export">
+
+<i class="fa-solid fa-file-excel"></i>
+
+Export Excel
+
+</button>
+
+<button id="printReport" class="print">
+
+<i class="fa-solid fa-print"></i>
+
+Print Report
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= DATABASE ================= -->
+
+<div class="section">
+
+<h2>Database</h2>
+
+<div class="buttons">
+
+<button id="downloadBackup" class="download">
+
+<i class="fa-solid fa-download"></i>
+
+Download Backup
+
+</button>
+
+<input type="file" id="backupFile" hidden>
+
+<button id="uploadBackup" class="upload">
+
+<i class="fa-solid fa-upload"></i>
+
+Upload Backup
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= MAINTENANCE ================= -->
+
+<div class="section">
+
+<h2>Maintenance</h2>
+
+<div class="buttons">
+
+<button id="clearReport" class="clear">
+    <i class="fa-solid fa-eraser"></i>
+    Clear Report
+</button>
+
+</div>
+
+</div>
+<!-- ================= BACK ================= -->
+
+<div class="section" style="text-align:center;">
+
+<button
+class="back"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Dashboard
+
+</button>
+
+</div>
+
+</div>
+
+<script type="module" src="js/admintools.js"></script>
+
+</body>
+</html>

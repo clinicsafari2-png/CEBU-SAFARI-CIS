@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Consultation Record</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#F4F7FB;
+}
+
+.content{
+    padding:30px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.info{
+    margin-bottom:15px;
+}
+
+.info strong{
+    display:block;
+    color:#0F766E;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#0F766E;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+
+.buttons{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Consultation Record</h1>
+
+</div>
+
+<div class="content">
+
+<div class="card">
+
+<h2>Patient Information</h2>
+
+<div class="info">
+<strong>Patient Name</strong>
+<span id="patientName"></span>
+</div>
+
+<div class="info">
+<strong>Medical Record No.</strong>
+<span id="patientNo"></span>
+</div>
+
+<div class="info">
+<strong>Employee ID</strong>
+<span id="employeeID"></span>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Consultation Details</h2>
+
+<div class="info">
+<strong>Date</strong>
+<span id="consultationDate"></span>
+</div>
+
+<div class="info">
+<strong>Chief Complaint</strong>
+<span id="chiefComplaint"></span>
+</div>
+
+<div class="info">
+<strong>Diagnosis</strong>
+<span id="diagnosis"></span>
+</div>
+
+<div class="info">
+<strong>Treatment Given</strong>
+<span id="treatment"></span>
+</div>
+
+<div class="info">
+<strong>Remarks</strong>
+<span id="remarks"></span>
+</div>
+
+<h3>Medicines Given</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Medicine</th>
+<th>Quantity</th>
+<th>Dosage</th>
+<th>Frequency</th>
+
+</tr>
+
+</thead>
+
+<tbody id="medicineTable">
+
+<tr>
+
+<td colspan="4" align="center">
+
+No medicines recorded.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="buttons">
+
+<button class="btn btn-success" id="printBtn">
+
+<i class="fa fa-print"></i>
+
+Print
+
+</button>
+
+<button class="btn btn-primary" id="excelBtn">
+
+<i class="fa fa-file-excel"></i>
+
+Export Excel
+
+</button>
+
+<button class="btn btn-danger" id="deleteBtn">
+
+<i class="fa fa-trash"></i>
+
+Delete Consultation
+
+</button>
+
+<button class="btn btn-secondary"
+onclick="history.back()">
+
+Back
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/consultationrecord.js"></script>
+
+</body>
+
+</html>

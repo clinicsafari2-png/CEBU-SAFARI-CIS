@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sick Leave Details | Clinic Information System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#F4F7FB;
+}
+
+.content{
+    padding:30px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    font-weight:bold;
+    color:#0F766E;
+}
+
+.form-group p{
+    margin-top:6px;
+    font-size:15px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+@media print{
+
+.sidebar,
+.topbar,
+.buttons{
+    display:none;
+}
+
+.main{
+    margin:0;
+}
+
+body{
+    background:white;
+}
+
+.card{
+    box-shadow:none;
+    border:1px solid #ccc;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+<h2>Clinic System</h2>
+
+</div>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa fa-house"></i> Dashboard</a></li>
+
+<li><a href="consultation.html"><i class="fa fa-user-doctor"></i> Consultation</a></li>
+
+<li><a href="medicalrecords.html"><i class="fa fa-folder-open"></i> Medical Records</a></li>
+
+<li><a class="active" href="sickleaverecords.html"><i class="fa fa-file-medical"></i> Sick Leave Records</a></li>
+
+<li><a href="index.html"><i class="fa fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Sick Leave Details</h1>
+
+</div>
+
+<div class="content">
+
+<div class="card">
+
+<h2>Patient Information</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+<label>Employee ID</label>
+<p id="employeeID"></p>
+</div>
+
+<div class="form-group">
+<label>Patient Name</label>
+<p id="fullname"></p>
+</div>
+
+<div class="form-group">
+<label>Department</label>
+<p id="department"></p>
+</div>
+
+<div class="form-group">
+<label>Position</label>
+<p id="position"></p>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Sick Leave Information</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+<label>Date From</label>
+<p id="dateFrom"></p>
+</div>
+
+<div class="form-group">
+<label>Date To</label>
+<p id="dateTo"></p>
+</div>
+
+<div class="form-group">
+<label>Number of Days</label>
+<p id="days"></p>
+</div>
+
+<div class="form-group">
+<label>Chief Complaint</label>
+<p id="chiefComplaint"></p>
+</div>
+
+<div class="form-group">
+<label>Diagnosis</label>
+<p id="diagnosis"></p>
+</div>
+
+<div class="form-group">
+<label>Treatment</label>
+<p id="treatment"></p>
+</div>
+
+<div class="form-group">
+<label>Remarks</label>
+<p id="remarks"></p>
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+class="btn btn-success"
+id="printRecord">
+
+<i class="fa fa-print"></i>
+
+Print
+
+</button>
+
+<button
+class="btn btn-danger"
+id="deleteRecord">
+
+<i class="fa fa-trash"></i>
+
+Delete
+
+</button>
+
+<button
+class="btn btn-secondary"
+onclick="history.back()">
+
+Back
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/sickleavedetails.js"></script>
+
+</body>
+
+</html>

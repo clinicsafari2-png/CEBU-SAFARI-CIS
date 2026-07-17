@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Patient List</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#F4F7FB;
+}
+
+.content{
+    padding:30px;
+}
+
+.card{
+
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.page-title{
+
+    color:#0F766E;
+    margin-bottom:20px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+table th{
+
+    background:#0F766E;
+    color:white;
+    padding:12px;
+
+}
+
+table td{
+
+    padding:12px;
+    border-bottom:1px solid #ddd;
+
+}
+
+.btn{
+
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-primary{
+
+    background:#0F766E;
+    color:white;
+
+}
+
+.search-box{
+
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+    border:1px solid #ccc;
+    border-radius:8px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+<h2>Clinic System</h2>
+
+</div>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fa fa-house"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="consultation.html">
+<i class="fa fa-user-doctor"></i>
+New Consultation
+</a>
+</li>
+
+<li>
+<a class="active" href="patientlist.html">
+<i class="fa fa-users"></i>
+Patient List
+</a>
+</li>
+
+<li>
+<a href="medicalrecords.html">
+<i class="fa fa-folder-open"></i>
+Medical Records
+</a>
+</li>
+
+<li>
+<a href="sickleave.html">
+<i class="fa fa-file-medical"></i>
+Sick Leave
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1 id="pageTitle">Patient List</h1>
+
+<div class="user-profile">
+
+<i class="fa fa-circle-user fa-2x"></i>
+
+<span id="loggedUser"></span>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="card">
+
+<input
+type="text"
+id="searchPatient"
+class="search-box"
+placeholder="Search patient...">
+
+<table>
+
+<thead>
+
+<tr>
+
+    <th>Medical Record No.</th>
+
+    <th>Employee ID</th>
+
+    <th>Name</th>
+
+    <th>Chief Complaint</th>
+
+    <th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="patientTable">
+
+<tr>
+
+<td colspan="5" align="center">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/patientlist.js"></script>
+
+</body>
+
+</html>

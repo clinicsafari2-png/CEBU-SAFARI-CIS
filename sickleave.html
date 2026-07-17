@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sick Leave | Clinic Information System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#F4F7FB;
+}
+
+.content{
+    padding:30px;
+}
+
+.card{
+
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.form-row{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <img src="images/logo.png">
+
+        <h2>Clinic Information System</h2>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="consultation.html">
+                <i class="fa fa-user-doctor"></i>
+                Consultation
+            </a>
+        </li>
+
+        <li>
+            <a href="medicalrecords.html">
+                <i class="fa fa-folder-open"></i>
+                Medical Records
+            </a>
+        </li>
+
+        <li>
+            <a class="active" href="sickleave.html">
+                <i class="fa fa-file-medical"></i>
+                Sick Leave
+            </a>
+        </li>
+
+        <li>
+            <a href="sickleaverecords.html">
+                <i class="fa fa-notes-medical"></i>
+                Sick Leave Records
+            </a>
+        </li>
+<li>
+    <a href="admintools.html">
+        <i class="fa-solid fa-user-shield"></i>
+        <span>Admin Tools</span>
+    </a>
+</li>
+
+        <li>
+    <a href="recyclebin.html">
+        <i class="fa-solid fa-trash-can"></i>
+        Recycle Bin
+    </a>
+</li>
+
+<li>
+            <a href="index.html">
+                <i class="fa fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Sick Leave</h1>
+
+<div class="user-profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+<span id="loggedUser"></span>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<!-- SEARCH -->
+
+<div class="card">
+
+<h2>Search Employee</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Employee ID</label>
+
+<input
+type="text"
+id="employeeID"
+placeholder="Enter Employee ID">
+
+</div>
+
+</div>
+
+<br>
+
+<button
+class="btn btn-primary"
+id="searchBtn">
+
+<i class="fa fa-search"></i>
+
+Search
+
+</button>
+
+<button
+class="btn btn-success hidden"
+id="registerBtn">
+
+Register New Employee
+
+</button>
+
+</div>
+
+<!-- PATIENT INFORMATION -->
+
+<div
+class="card hidden"
+id="patientCard">
+
+<h2>Patient Information</h2>
+
+<div class="form-row">
+
+<div>
+
+<label>Employee ID</label>
+
+<input
+type="text"
+id="displayEmployeeID"
+readonly>
+
+</div>
+
+<div>
+
+<label>Patient Name</label>
+
+<input
+type="text"
+id="patientName"
+readonly>
+
+</div>
+
+<div>
+
+<label>Department</label>
+
+<input
+type="text"
+id="department"
+readonly>
+
+</div>
+
+<div>
+
+<label>Position</label>
+
+<input
+type="text"
+id="position"
+readonly>
+
+</div>
+
+<div>
+
+<label>Classification</label>
+
+<input
+type="text"
+id="classification"
+readonly>
+
+</div>
+
+</div>
+
+</div>
+<!-- REGISTER NEW EMPLOYEE -->
+
+<div
+class="card hidden"
+id="registrationCard">
+
+<h2>Register New Employee</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Employee ID</label>
+
+<input
+type="text"
+id="regEmployeeID">
+
+</div>
+
+<div class="form-group">
+
+<label>Department</label>
+
+<select id="regDepartment">
+
+<option value="">Select Department</option>
+
+<option>HR</option>
+<option>Finance and Corporate Services</option>
+<option>Life Sciences & Education</option>
+<option>Park Grounds</option>
+<option>Engineering</option>
+<option>Security</option>
+<option>Parks and Adventure</option>
+<option>Safari Camp</option>
+<option>Base Camp</option>
+<option>Front Office</option>
+<option>Motorpool</option>
+<option>Sales & Marketing</option>
+<option>Office of the VP</option>
+<option>ML-Agri Ventures</option>
+<option>Santican Cattle Station</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Position</label>
+
+<input
+type="text"
+id="regPosition">
+
+</div>
+
+<div class="form-group">
+
+<label>Classification</label>
+
+<input
+type="text"
+value="Employee"
+readonly
+id="regClassification">
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Last Name</label>
+
+<input
+type="text"
+id="lastname">
+
+</div>
+
+<div class="form-group">
+
+<label>First Name</label>
+
+<input
+type="text"
+id="firstname">
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Middle Name</label>
+
+<input
+type="text"
+id="middlename">
+
+</div>
+
+<div class="form-group">
+
+<label>Birthday</label>
+
+<input
+type="date"
+id="birthday">
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Age</label>
+
+<input
+type="number"
+id="age"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Gender</label>
+
+<select id="gender">
+
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Address</label>
+
+<textarea
+id="address"
+rows="3"></textarea>
+
+</div>
+
+<br>
+
+<button
+    class="btn btn-success"
+    id="savePatient">
+
+    <i class="fa fa-floppy-disk"></i>
+
+    Save Patient
+
+</button>
+
+</div>
+<!-- SICK LEAVE -->
+
+<div
+class="card hidden"
+id="sickleaveCard">
+
+<h2>Sick Leave Information</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Date From</label>
+
+<input
+type="date"
+id="dateFrom">
+
+</div>
+
+<div class="form-group">
+
+<label>Date To</label>
+
+<input
+type="date"
+id="dateTo">
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>No. of Days</label>
+
+<input
+type="number"
+id="days"
+readonly>
+
+</div>
+</div>
+
+<div class="form-group">
+
+<label>Chief Complaint</label>
+
+<input
+type="text"
+id="chiefComplaint">
+
+</div>
+
+<div class="form-group">
+
+<label>Diagnosis</label>
+
+<textarea
+id="diagnosis"
+rows="3"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Treatment</label>
+
+<textarea
+id="treatment"
+rows="3"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Remarks</label>
+
+<textarea
+id="remarks"
+rows="3"></textarea>
+
+</div>
+
+<button
+class="btn btn-success"
+id="saveLeave">
+
+<i class="fa fa-floppy-disk"></i>
+
+Save Sick Leave
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/sickleave.js"></script>
+
+</body>
+
+</html>

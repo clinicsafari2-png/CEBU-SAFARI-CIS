@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recycle Bin | Clinic Information System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#F4F7FB;
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.content{
+    padding:20px 30px 30px;
+    margin-top:0;
+}
+
+.panel{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0F766E;
+    color:#fff;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+
+button{
+    margin-right:5px;
+}
+
+/* ===========================
+   PAGE HEADER
+=========================== */
+
+.page-header{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    padding:15px 30px 5px;
+    margin:0;
+}
+
+/* ===========================
+   EMPTY RECYCLE BIN BUTTON
+=========================== */
+
+.empty-btn{
+
+    background:#DC2626;
+    color:#fff;
+
+    border:none;
+
+    padding:18px 40px;
+
+    font-size:20px;
+    font-weight:bold;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    text-transform:uppercase;
+
+    box-shadow:0 6px 15px rgba(220,38,38,.35);
+
+    transition:.25s;
+}
+
+.empty-btn:hover{
+
+    background:#B91C1C;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 20px rgba(220,38,38,.45);
+
+}
+
+
+.empty-btn i{
+    margin-right:10px;
+    font-size:22px;
+}
+
+/* ===========================
+   SUMMARY CARDS
+=========================== */
+
+.summary-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin:25px 0;
+
+}
+
+.summary-card{
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.summary-card i{
+
+    font-size:32px;
+
+    color:#0F766E;
+
+    margin-bottom:10px;
+
+}
+
+.summary-card h3{
+
+    color:#555;
+
+    margin-bottom:10px;
+
+}
+
+.summary-card h2{
+
+    color:#0F766E;
+
+    font-size:34px;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:900px){
+
+    .summary-cards{
+        grid-template-columns:1fr;
+    }
+
+    .page-header{
+        justify-content:center;
+        padding:15px;
+    }
+
+    .empty-btn{
+        width:80%;
+        font-size:15px;
+        padding:15px;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+<h2>Clinic Information System</h2>
+
+</div>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa fa-house"></i> Dashboard</a></li>
+
+<li><a href="consultation.html"><i class="fa fa-user-doctor"></i> Consultation</a></li>
+
+<li><a href="medicalrecords.html"><i class="fa fa-folder-open"></i> Medical Records</a></li>
+
+<li><a href="sickleave.html"><i class="fa fa-file-medical"></i> Sick Leave</a></li>
+
+
+<li>
+<a class="active" href="recyclebin.html">
+<i class="fa-solid fa-trash-can"></i>
+Recycle Bin
+</a>
+</li>
+
+<li><a href="index.html"><i class="fa fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+    <div class="page-header">
+
+        <button id="emptyRecycleBin" class="empty-btn">
+
+            <i class="fa-solid fa-trash"></i>
+
+            EMPTY RECYCLE BIN
+
+        </button>
+
+    </div>
+
+</div>
+
+<div class="content">
+
+<div class="panel">
+
+    <h2>
+        <i class="fa-solid fa-trash-can"></i>
+        Recycle Bin
+    </h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Type</th>
+
+                <th>ID</th>
+
+                <th>Description</th>
+
+                <th>Deleted By</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="recycleTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/recyclebin.js"></script>
+
+</body>
+
+</html>

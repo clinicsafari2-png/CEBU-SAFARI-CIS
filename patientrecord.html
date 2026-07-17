@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Record</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body {
+            background: #F4F7FB;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .card {
+
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+            margin-bottom: 20px;
+
+        }
+
+        .form-row {
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+
+        }
+
+        table {
+
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+
+        table th {
+
+            background: #0F766E;
+            color: white;
+            padding: 12px;
+
+        }
+
+        table td {
+
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+
+        }
+
+        .buttons {
+
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+
+        }
+        .consultation-card{
+
+    margin-top:25px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:20px;
+    background:#fff;
+
+}
+
+.consultation-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+
+}
+
+.consultation-date{
+
+    background:#0F766E;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:14px;
+
+}
+
+.consultation-grid{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-bottom:20px;
+
+}
+
+.consultation-grid strong{
+
+    color:#0F766E;
+
+}
+
+.medicineTable{
+
+    width:100%;
+    margin-top:10px;
+
+}
+
+.medicineTable th{
+
+    background:#0F766E;
+    color:white;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo">
+
+            <img src="images/logo.png">
+
+            <h2>Clinic Information System</h2>
+
+        </div>
+
+        <ul>
+
+            <li><a href="dashboard.html"><i class="fa fa-house"></i> Dashboard</a></li>
+
+            <li><a href="consultation.html"><i class="fa fa-user-doctor"></i> Consultation</a></li>
+
+            <li><a class="active" href="medicalrecords.html"><i class="fa fa-folder-open"></i> Medical Records</a></li>
+
+            <li><a href="sickleave.html"><i class="fa fa-file-medical"></i> Sick Leave</a></li>
+
+        </ul>
+
+    </div>
+
+    <div class="main">
+
+        <div class="topbar">
+
+            <h1>Patient Record</h1>
+
+        </div>
+
+        <div class="content">
+
+            <!-- PATIENT INFORMATION -->
+
+            <div class="card">
+
+                <h2>Patient Information</h2>
+
+                <div class="form-row">
+
+                    <p><strong>Medical Record No.</strong><br><span id="mrn"></span></p>
+
+                    <p><strong>Employee ID</strong><br><span id="empID"></span></p>
+
+                    <p><strong>Patient Name</strong><br><span id="patientName"></span></p>
+
+                    <p><strong>Classification</strong><br><span id="classification"></span></p>
+
+                    <p><strong>Department</strong><br><span id="department"></span></p>
+
+                    <p><strong>Position</strong><br><span id="position"></span></p>
+
+                    <p><strong>Birthday</strong><br><span id="birthday"></span></p>
+
+                    <p><strong>Age</strong><br><span id="age"></span></p>
+
+                    <p><strong>Gender</strong><br><span id="gender"></span></p>
+                </div>
+
+            </div>
+
+            <!-- CONSULTATION HISTORY -->
+
+<div class="card">
+
+    <h2>
+        <i class="fa-solid fa-notes-medical"></i>
+        Complete Medical History
+    </h2>
+
+    <div id="consultationHistory">
+
+    <div class="consultation-card">
+
+        <div class="consultation-header">
+
+            <h3>Consultation</h3>
+
+            <span class="consultation-date" id="consultationDate">
+                --
+            </span>
+
+        </div>
+
+        <div class="form-group">
+
+            <label><strong>Chief Complaint</strong></label>
+
+            <p id="chiefComplaint">-</p>
+
+        </div>
+
+        <div class="form-group">
+
+            <label><strong>History of Past Illness</strong></label>
+
+            <p id="historyIllness">-</p>
+
+        </div>
+
+        <br>
+
+        <table id="medicineHistoryTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Medicine</th>
+
+                    <th>Quantity</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+    <div class="buttons">
+
+        <button class="btn btn-success" id="printAll">
+            <i class="fa fa-print"></i>
+            Print Complete Record
+        </button>
+
+        <button class="btn btn-info" id="exportExcel">
+            <i class="fa fa-file-excel"></i>
+            Export Excel
+        </button>
+
+        <button class="btn btn-danger" id="deletePatient">
+            <i class="fa fa-trash"></i>
+            Delete Patient
+        </button>
+
+       <button
+    class="btn btn-secondary"
+    id="backBtn">
+
+    <i class="fa fa-arrow-left"></i>
+
+    Back
+
+</button>
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="js/patientrecord.js"></script>
+
+</body>
+
+</html>

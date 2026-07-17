@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>New Consultation | Clinic Information System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+.search-card{
+
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    margin-bottom:25px;
+
+}
+
+.search-card h2{
+
+    color:#0F766E;
+    margin-bottom:20px;
+
+}
+
+.radio-group{
+
+    display:flex;
+    gap:30px;
+    margin-bottom:20px;
+
+}
+
+.form-row{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+
+}
+
+.form-group{
+
+    margin-bottom:15px;
+
+}
+
+.form-group label{
+
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    box-sizing:border-box;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.button-group{
+
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+}
+
+.status{
+
+    margin-top:20px;
+    font-weight:bold;
+    color:#0F766E;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===========================
+        SIDEBAR
+=========================== -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+<h2>Clinic Information System</h2>
+
+</div>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa fa-house"></i><span> Dashboard</span></a></li>
+
+<li><a class="active" href="consultation.html"><i class="fa fa-user-doctor"></i><span> Consultation</span></a></li>
+
+<li><a href="medicalrecords.html"><i class="fa fa-folder-open"></i><span> Medical Records</span></a></li>
+
+<li><a href="sickleave.html"><i class="fa fa-file-medical"></i><span> Sick Leave</span></a></li>
+
+<li>
+    <a href="admintools.html">
+        <i class="fa-solid fa-user-shield"></i>
+        <span>Admin Tools</span>
+    </a>
+</li>
+
+<li>
+    <a href="recyclebin.html">
+        <i class="fa-solid fa-trash-can"></i>
+        Recycle Bin
+    </a>
+</li>
+
+<li>
+    <a href="index.html">
+        <i class="fa fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- ===========================
+        MAIN
+=========================== -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>New Consultation</h1>
+
+<div class="user-profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+<span id="loggedUser"></span>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<form id="consultationForm">
+
+<!-- ===========================
+      PATIENT SEARCH
+=========================== -->
+
+<div class="search-card" id="patientSearch">
+
+<h2>Patient Search</h2>
+
+<div class="radio-group">
+
+<label>
+<input
+type="radio"
+name="classification"
+value="Employee"
+checked>
+Employee
+</label>
+
+<label>
+<input
+type="radio"
+name="classification"
+value="Guest">
+Guest
+</label>
+
+</div>
+
+<!-- Employee Search -->
+
+<div id="employeeSearch">
+
+    <div class="form-group">
+
+        <label>Employee ID</label>
+
+        <input
+        type="text"
+        id="employeeID"
+        placeholder="Enter Employee ID">
+
+    </div>
+
+</div>
+
+<!-- Guest Search -->
+
+<div id="guestSearch" class="hidden">
+
+    <div class="form-group">
+
+        <label>Guest Name</label>
+
+        <input
+        type="text"
+        id="guestName"
+        placeholder="Enter Guest Name">
+
+    </div>
+
+</div>
+<button
+type="button"
+class="btn btn-primary"
+id="searchBtn">
+
+<i class="fa fa-search"></i>
+
+Search
+
+</button>
+
+<button
+type="button"
+class="btn btn-success hidden"
+id="continueBtn">
+
+Continue Consultation
+
+</button>
+
+<button
+type="button"
+class="btn btn-warning hidden"
+id="registerBtn">
+
+Register New Patient
+
+</button>
+
+</div>
+
+<div
+class="status"
+id="statusMessage">
+
+</div>
+
+</div>
+
+<!-- ===========================
+      PATIENT SUMMARY
+=========================== -->
+
+<div class="search-card hidden" id="patientSummary">
+
+<h2>Patient Summary</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Medical Record No.</label>
+
+<input
+type="text"
+id="summaryMRN"
+readonly>
+
+</div>
+<div class="form-group">
+
+<label>Patient Number</label>
+
+<input
+type="text"
+id="patientNumber"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Patient Classification</label>
+
+<input
+type="text"
+id="summaryClassification"
+readonly>
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Employee ID</label>
+
+<input
+type="text"
+id="summaryEmployeeID"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Department</label>
+
+<input
+type="text"
+id="summaryDepartment"
+readonly>
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Patient Name</label>
+
+<input
+type="text"
+id="summaryName"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Last Consultation</label>
+
+<input
+type="text"
+id="summaryLastConsultation"
+readonly>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===========================
+      PATIENT INFORMATION
+=========================== -->
+
+<div class="search-card hidden" id="registrationForm">
+
+<h2>PATIENT INFORMATION</h2>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Medical Record No.</label>
+
+<input
+type="text"
+id="medicalRecordNo"
+readonly>
+
+<input
+type="hidden"
+id="patientNumber">
+
+</div>
+
+<div class="form-group">
+
+<label>Patient Classification</label>
+
+<input
+type="text"
+id="patientClassification"
+readonly>
+
+</div>
+
+</div>
+
+<div class="form-row employeeOnly">
+
+<div class="form-group">
+
+<label>Employee ID</label>
+
+<input
+type="text"
+id="regEmployeeID">
+
+</div>
+
+<div class="form-group">
+
+<label>Department</label>
+
+<select id="department">
+
+<option value="">Select Department</option>
+
+<option>HR</option>
+<option>Finance and Corporate Services</option>
+<option>Life Sciences & Education</option>
+<option>Park Grounds</option>
+<option>Engineering</option>
+<option>Security</option>
+<option>Parks and Adventure</option>
+<option>Safari Camp</option>
+<option>Base Camp</option>
+<option>Front Office</option>
+<option>Motorpool</option>
+<option>Sales & Marketing</option>
+<option>Office of the VP</option>
+<option>ML-Agri Ventures</option>
+<option>Santican Cattle Station</option>
+<option>Tunnel Garden</option>
+<option>Tenants-Outpost</option>
+<option>Tenants-Auntie Anne's</option>
+<option>Tenants-Pizzeria Michelangelo</option>
+<option>Tenants-Convenient Store</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+</div>
+<div class="form-group employeeOnly">
+
+<label>Position</label>
+
+<input
+type="text"
+id="position">
+
+</div>
+
+<div
+class="form-group hidden"
+id="otherDepartmentDiv">
+
+<label>Specify Department</label>
+
+<input
+type="text"
+id="otherDepartment"
+placeholder="Specify Department">
+
+</div>
+
+<hr>
+
+<h3>PERSONAL INFORMATION</h3>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Last Name</label>
+
+<input
+type="text"
+id="lastname">
+
+</div>
+
+<div class="form-group">
+
+<label>First Name</label>
+
+<input
+type="text"
+id="firstname">
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Middle Name</label>
+
+<input
+type="text"
+id="middlename">
+
+</div>
+
+<div class="form-group">
+
+<label>Birthday</label>
+
+<input
+type="date"
+id="birthday">
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Age</label>
+
+<input
+type="number"
+id="age"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Gender</label>
+
+<select id="gender">
+
+<option value="">Select Gender</option>
+
+<option>Male</option>
+
+<option>Female</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Civil Status</label>
+
+<select id="civilstatus">
+    <option value="">Select Civil Status</option>
+
+<option>Single</option>
+
+<option>Married</option>
+
+<option>Widowed</option>
+
+<option>Separated</option>
+
+</select>
+
+</div>
+</div>
+
+<div class="form-group">
+
+<label>Address</label>
+
+<textarea
+id="address"
+rows="3"></textarea>
+
+</div>
+<hr>
+
+<h3>CONSULTATION INFORMATION</h3>
+
+<div class="form-row">
+
+    <div class="form-group">
+
+        <label>Consultation Date</label>
+
+        <input
+            type="date"
+            id="consultationDate">
+
+    </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+
+    <label>Chief Complaint</label>
+
+    <select id="chiefComplaint">
+
+        <option value="">Select Chief Complaint</option>
+        <option>Loose Bowel Movement</option>
+        <option>Fever</option>
+        <option>Cough</option>
+        <option>Colds</option>
+        <option>Headache</option>
+        <option>Body Pain</option>
+        <option>Toothache</option>
+        <option>Epigastric Pain</option>
+        <option>Hypogastric Pain</option>
+        <option>Punctured Wound</option>
+        <option>Lacerated Wound</option>
+        <option>Animal Bite</option>
+        <option>Others</option>
+
+    </select>
+
+</div>
+
+<!-- Animal Type -->
+<div class="form-group hidden" id="animalTypeDiv">
+
+    <label>Animal</label>
+
+    <select id="animalType">
+
+        <option value="">Select Animal</option>
+        <option>Dog</option>
+        <option>Cat</option>
+        <option>Bird</option>
+        <option>Others</option>
+
+    </select>
+
+</div>
+
+<!-- Specify Animal -->
+<div class="form-group hidden" id="otherAnimalDiv">
+
+    <label>Specify Animal</label>
+
+    <input
+        type="text"
+        id="otherAnimal"
+        placeholder="Specify Animal">
+
+</div>
+
+<!-- Specify Chief Complaint -->
+<div class="form-group hidden" id="otherComplaintDiv">
+
+    <label>Specify Chief Complaint</label>
+
+    <input
+        type="text"
+        id="otherComplaint">
+
+</div>
+<div class="form-group">
+
+    <label>History of Past Illness</label>
+
+    <textarea
+        id="historyIllness"
+        rows="4">
+    </textarea>
+
+</div>
+
+<hr>
+
+<h3>Medicines Given</h3>
+
+<table width="100%" id="medicineTable">
+
+    <thead>
+
+        <tr>
+
+            <th>Medicine</th>
+            <th>Quantity</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <tr>
+
+            <td>
+
+                <select class="medicine">
+
+    <option value="">Select Medicine</option>
+
+    <option>Paracetamol</option>
+    <option>Loperamide</option>
+    <option>Mefenamic Acid</option>
+    <option>Antacid</option>
+    <option>Cetirizine</option>
+    <option>Hyoscine</option>
+    <option>Meclizine</option>
+    <option>Other</option>
+
+</select>
+
+<input
+    type="text"
+    class="otherMedicine hidden"
+    placeholder="Specify Medicine">
+
+            </td>
+
+            <td>
+
+                <input
+                    type="number"
+                    min="1"
+                    placeholder="Qty">
+
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<button
+    type="button"
+    class="btn btn-success"
+    id="addMedicine">
+
+    <i class="fa-solid fa-plus"></i>
+
+    Add Another Medicine
+
+</button>
+
+<hr>
+
+<div class="button-group">
+    <button
+    type="button"
+    class="btn btn-success"
+    id="savePatientBtn">
+
+    <i class="fa-solid fa-floppy-disk"></i>
+
+    Save Patient
+
+</button>
+
+<button
+    type="button"
+    class="btn btn-primary hidden"
+    id="saveConsultationBtn">
+
+    <i class="fa-solid fa-floppy-disk"></i>
+
+    Save Consultation
+
+</button>
+
+<button
+    type="button"
+    class="btn btn-secondary"
+    id="cancelRegistrationBtn">
+
+    <i class="fa-solid fa-xmark"></i>
+
+    Cancel
+
+</button>
+
+</div>
+<!-- ===========================
+     ACTION BUTTONS
+============================ -->
+
+<div class="search-card hidden" id="actionButtons">
+
+    <div style="display:flex;justify-content:flex-end;gap:15px;flex-wrap:wrap;">
+
+        <button
+        type="reset"
+        class="btn btn-warning">
+            Reset
+        </button>
+
+        <button
+        type="button"
+        class="btn btn-success">
+            Print
+        </button>
+
+    </div>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<script type="module" src="js/consultation.js"></script>
+
+</body>
+</html> 
